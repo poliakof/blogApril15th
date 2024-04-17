@@ -68,3 +68,104 @@ function makeMultiplier(parameter1) {
 const double = makeMultiplier(5)
 
 console.log(double(6))
+
+
+/* Advanced Level
+Question 5: Using Closures
+
+Implement a function
+createCounter
+that initializes a counter to 0 and returns a function. When invoked, the returned function should increment the counter by 1 and return the new count, but without allowing direct access to the counter variable. */
+
+function createCounter() {
+    let counter = 0
+    return function() {
+        counter++
+        return counter
+    }
+}
+const counter = createCounter()
+
+console.log(counter())
+console.log(counter())
+
+
+/* Question 6: Function Currying
+
+Define a curried function
+add
+that can take three numbers as arguments but does so one at a time. For example,
+add(1)(2)(3)
+should return 6. */
+
+function add(a) {
+    return function(b) {
+        return function(c){
+            return a + b + c
+        }
+    }
+}
+
+const numbers = add(1)(2)(3)
+
+console.log(numbers)
+
+
+/* Expert Level
+
+Question 7: More Advanced Closure
+
+Write a function
+configureDevice
+that takes an
+id
+for a device. It should return a function that accepts a command. When this function is called with a command, it should return a string combining the
+id
+and the command, e.g.,
+"Device 001 execute: reboot". */
+
+function configureDevice(a) {
+    return function(b) {
+        return `Device ${a} execute: ${b}`
+    }
+}
+const device = configureDevice("001")
+
+console.log(device("reboot"))
+
+
+/* Question 8: Complex Currying and Closures
+
+Create a function
+createMathOp
+that takes a mathematical operator as a string ('+', '-', '*', '/'). Return a function that takes two parameters (a and b). When this returned function is called, it should apply the operation to
+a
+and
+b
+and return the result. Use currying and closures to encapsulate the operator and operands. */
+
+function createMathOp(operator) {
+
+    return function(a) {
+
+        return function (b) {
+
+         if (operator = "+") {
+            return a + b
+         } else if (operator = "-") {
+            return a - b
+         } else if (operator = "*") {
+            return a * b
+         } else if (operator = "/") {
+            return a / b
+         }
+
+        }
+    }
+}
+
+const result = createMathOp("+")(5)
+
+console.log(result(4))
+
+//It just adds a and b up. Not sure why all the other operators won't work somehowww//
